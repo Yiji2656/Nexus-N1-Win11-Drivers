@@ -1,10 +1,10 @@
 # Nexus-N1-Win11-Drivers
 
-Nexus AI Station N1 (HarborOS) 设备安装 Windows 11 专用驱动包
+Nexus AI Station N1 设备安装 Windows 11 专用驱动包
 
 ---
 
-## ⚠️ 重要提示（READ FIRST）
+## ⚠️ 提示（READ FIRST）
 
 由于 Nexus N1 原生安装 Windows 11 后会缺失网卡驱动导致无法联网，**请务必在装机前**，使用其他可联网的电脑将本驱动包下载到 U 盘中备用！
 
@@ -16,7 +16,7 @@ Nexus AI Station N1 (HarborOS) 设备安装 Windows 11 专用驱动包
 
 本仓库专门收集并打包了 Nexus AI Station N1 运行 Windows 11 系统所需的关键硬件驱动。包含市面上通用驱动软件（如驱动精灵、驱动人生、360驱动大师）未收录的板载特制驱动，解决安装系统后硬件无法识别的问题。
 
-**适用设备**：Nexus AI Station N1 (寒武纪/HarborOS 迷你主机)
+**适用设备**：Nexus AI Station N1
 **适用系统**：Windows 11 64位 (21H2/22H2/23H2/24H2)
 **驱动版本**：基于官方驱动包提取
 **驱动总数**：55个驱动组件
@@ -91,7 +91,7 @@ Nexus AI Station N1 (HarborOS) 设备安装 Windows 11 专用驱动包
 
 ## 💻 安装方法
 
-### 方法一：手动安装（推荐）
+### 方法一：手动安装
 1. 将本驱动包解压到 U 盘或本地硬盘
 2. 右键点击「开始菜单」→「设备管理器」
 3. 找到带黄色感叹号的未知设备
@@ -99,50 +99,20 @@ Nexus AI Station N1 (HarborOS) 设备安装 Windows 11 专用驱动包
 5. 选择对应驱动文件夹，点击下一步完成安装
 6. 按照上述安装顺序逐个安装，提示重启时选择重启
 
-### 方法二：批量自动安装
-1. 以管理员身份运行命令提示符 (CMD)
-2. 进入驱动包根目录
-3. 执行以下命令批量安装：
+### 方法二：批量自动安装（推荐！）
+1. 以管理员身份运行命令提示符 (CMD) 
+2. 执行以下命令批量安装：
    ```cmd
-   for /d %i in (*) do pnputil /add-driver "%i\*.inf" /install
-等待所有驱动安装完成后重启电脑
-⚠️ 安装注意事项
-安装前准备：建议关闭驱动精灵、360 等驱动管理软件，避免自动安装不兼容驱动
-重启时机：安装芯片组和显卡驱动后必须重启，不要连续安装多个驱动后再重启
-驱动签名：如遇到驱动签名问题，请在「高级启动」中选择「禁用驱动程序强制签名」
-版本选择：如遇到同名驱动有两个版本，优先选择版本号更新的那个
-系统还原：安装前建议创建系统还原点，出现问题可快速回滚
-❓ 常见问题
-Q: 安装完系统后鼠标键盘没反应？
-A: 这是因为缺少 USB 驱动，请使用 PS/2 接口的鼠标键盘，或者提前将驱动注入到系统镜像中，先安装芯片组和 USB 驱动即可解决。
-Q: 安装完网卡驱动还是连不上网？
-A: 请检查设备管理器中网卡是否有黄色感叹号，尝试卸载现有驱动后手动重新安装 aqnic650 驱动，确认网口灯正常闪烁。
-Q: 声音有杂音或者麦克风不能用？
-A: 请先安装完整的 AMD ACP 音频驱动包，不要使用 Windows 自动安装的通用音频驱动，安装完成后在声音设置中选择正确的输入输出设备。
-Q: 分辨率不正常，没有 1920x1080 选项？
-A: 这是因为没有安装显卡驱动，请手动安装 amdxe 显卡驱动，重启后即可恢复正常分辨率和硬件加速。
-Q: 休眠唤醒后设备异常？
-A: 请确保安装了 AMD PMF 平台管理框架驱动和传感器驱动，这两个驱动负责电源管理。
-📁 文件结构
-plaintext
-Harbor_AI_Drivers/
-├── amdacpafd.inf_amd64_*/          # ACP音频功能驱动
-├── amdacpbt*.inf_amd64_*/          # 蓝牙音频系列驱动
-├── amdacpbus*.inf_amd64_*/         # ACP总线驱动
-├── amdocl.inf_amd64_*/             # OpenCL计算驱动
-├── amdogl.inf_amd64_*/             # OpenGL驱动
-├── amdvlk.inf_amd64_*/             # Vulkan驱动
-├── amdxe.inf_amd64_*/              # 核显驱动
-├── aqnic650*.inf_amd64_*/          # Aquantia万兆网卡驱动
-├── jmb585.inf_amd64_*/             # SATA控制器驱动
-├── nvhda.inf_amd64_*/              # NVIDIA音频驱动
-├── nv*.inf_amd64_*/                # NVIDIA显示相关驱动
-├── smbusamd.inf_amd64_*/           # SMBus总线驱动
-├── amdusb4*.inf_amd64_*/           # USB4系列驱动
-└── ...其他驱动文件夹
+   Get-ChildItem -Path "C:\Harbor_AI_Drivers" -Recurse -Filter *.inf | ForEach-Object {pnputil /add-driver $_.FullName /install}
+注意：命令可以根据解压的位置自行调整，我这里是直接解压到的C盘。
+等待所有驱动安装完成后重启电脑即可！
+
+<img width="780" height="650" alt="image" src="https://github.com/user-attachments/assets/ee2e7e4c-ad32-4382-958f-7ebda2139fe9" />
+
 🤝 贡献说明
 如果您发现有缺失的驱动或者更兼容的版本，欢迎提交 Issue 或 PR！
 如果这个驱动包帮到了你，欢迎点个 ⭐ Star 支持一下！
+
 ⚖️ 免责声明
 本驱动包仅用于学习交流目的，所有驱动版权归原厂商所有
 安装驱动前请自行备份重要数据，因安装驱动造成的任何问题本仓库概不负责
