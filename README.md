@@ -100,9 +100,9 @@ Nexus AI Station N1 设备安装 Windows 11 专用驱动包
 6. 按照上述安装顺序逐个安装，提示重启时选择重启
 
 ### 方法二：批量自动安装（推荐！）
-1. 以管理员身份运行命令提示符 (CMD) 
+1. 以管理员身份运行命令提示符 (PowerShell) 
 2. 执行以下命令批量安装：
-   ```cmd
+   ```powershell
    Get-ChildItem -Path "C:\Harbor_AI_Drivers" -Recurse -Filter *.inf | ForEach-Object {pnputil /add-driver $_.FullName /install}
 注意：命令可以根据解压的位置自行调整，我这里是直接解压到的C盘。
 等待所有驱动安装完成后重启电脑即可！
@@ -118,3 +118,144 @@ Nexus AI Station N1 设备安装 Windows 11 专用驱动包
 安装驱动前请自行备份重要数据，因安装驱动造成的任何问题本仓库概不负责
 建议从官方渠道获取最新驱动，本仓库仅做收集整理和备份
 如果厂商认为本仓库侵权，请联系删除
+
+---
+
+# Nexus-N1-Win11-Drivers
+
+Dedicated Windows 11 Driver Pack for Nexus AI Station N1 Devices
+
+---
+
+## ⚠️ 提示（READ FIRST）
+
+Since the Nexus N1 lacks native network drivers after a clean Windows 11 installation, resulting in no internet access, **please make sure to download this driver pack onto a USB drive** using another internet-connected computer **BEFORE** installing the OS!
+
+> 💡 Recommendation: Extract the entire driver pack to the root directory of your USB drive, and install the drivers directly from the USB drive after the OS installation is complete. This avoids the deadlock situation where you cannot download drivers due to no network access.
+
+---
+
+## 📋 项目说明 (Project Description)
+
+This repository serves as a curated collection of essential hardware drivers required for running Windows 11 on the Nexus AI Station N1. It includes proprietary onboard drivers that are not indexed by standard driver tools (such as Driver Genius, Driver Life, 360 Driver Master), resolving issues where hardware components cannot be recognized after OS installation.
+
+**Target Device**: Nexus AI Station N1
+**Supported OS**: Windows 11 64-bit (21H2/22H2/23H2/24H2)
+**Driver Source**: Extracted from the official driver package
+**Total Components**: 55 driver components
+
+---
+
+## 📦 包含驱动列表 (Driver List)
+
+### 🔌 核心芯片组驱动 (Chipset) - Must Be Installed First
+
+* AMD ACP Audio Bus Driver
+* AMD I2C/SMBus Driver
+* AMD PCIe Bridge Extension Driver
+* AMD PSP Secure Processor Driver
+* AMD Platform Management Framework (PMF) Driver
+* AMD GPIO Controller Driver
+* AMD µPEP Power Management Driver
+* AMD SD/eMMC Host Controller Driver
+
+### 🌐 有线/无线网卡驱动 (LAN/WLAN) - Restores Network Access After Installation
+
+* **Aquantia AQC107 10GbE Driver** (aqnic650) - Onboard 2.5G/10G Ethernet Port
+* AMD USB4 Network Driver
+* AMD SD Wireless Extension Driver
+
+> ✅ **Installation Tip**: Once this component is installed, your internet connection will be restored. You can then use Windows Update to automatically download and update the remaining drivers.
+
+### 🎮 核心显卡/显示驱动 (Graphics)
+
+* AMD Radeon Graphics Driver (amdxe)
+* AMD Vulkan Driver (amdvlk)
+* AMD OpenGL Driver (amdogl)
+* AMD OpenCL Compute Driver (amdocl)
+* NVIDIA Display Output Driver (nv_dispig)
+* NVIDIA Platform Control Framework Driver
+
+### 🔊 板载音频驱动 (Audio)
+
+* AMD ACP All-in-One Audio Driver
+* AMD Audio DSP Driver
+* AMD Bluetooth Audio Driver (SCO/ACX)
+* NVIDIA HD Audio Driver
+* Voice Clarity Audio Component Driver
+
+### 🔌 USB与Type-C驱动 (USB & Type-C)
+
+* AMD USB4/Thunderbolt Connection Manager Driver
+* AMD USB4 PCIe Filter Driver
+* AMD USB Hub Filter Driver
+* AMD USB Function Driver
+* AMD Wireless Button Driver
+
+### 📝 其他系统驱动 (Other System Drivers)
+
+* JMicron JMB585 SATA Controller Driver
+* Realtek USB Card Reader Driver
+* AMD Sensor Fusion Hub (SFH) HID Driver
+* ATI Hardware Watchdog Driver
+* System Button Driver
+* Printer Compatibility Driver
+
+---
+
+## 🚀 推荐安装顺序 (Recommended Installation Order)
+
+To prevent conflicts or errors, please strictly follow the installation order below:
+
+| Order | Driver Category | Priority | Note |
+| --- | --- | --- | --- |
+| 1 | Core Chipset Drivers | ⭐⭐⭐⭐⭐ | Reboot your PC before moving to the next step |
+| 2 | Network Drivers (LAN/WLAN) | ⭐⭐⭐⭐⭐ | Restores internet connection immediately after install |
+| 3 | USB/Type-C Drivers | ⭐⭐⭐⭐ | Fixes external device recognition issues |
+| 4 | Core Graphics Drivers | ⭐⭐⭐⭐ | Restores native resolution and hardware acceleration |
+| 5 | Audio Drivers | ⭐⭐⭐ | Restores sound output |
+| 6 | Miscellaneous Drivers | ⭐⭐⭐ | Can be automatically filled in via Windows Update |
+
+---
+
+## 💻 安装方法 (Installation Methods)
+
+### 方法一：手动安装 (Method 1: Manual Installation)
+
+1. Extract this driver package to a USB drive or local hard drive.
+2. Right-click the **Start Menu** and select **Device Manager**.
+3. Locate the unknown devices marked with a yellow exclamation mark.
+4. Right-click the device and choose **Update driver** -> **Browse my computer for drivers**.
+5. Select the corresponding driver folder, and click Next to finish the installation.
+6. Install them one by one according to the recommended order above. Select reboot when prompted.
+
+### 方法二：批量自动安装（推荐！）(Method 2: Batch Auto-Installation [Recommended!])
+
+1. Run **PowerShell** as an Administrator.
+2. Execute the following command to batch install all drivers:
+```PowerShell
+Get-ChildItem -Path "C:\Harbor_AI_Drivers" -Recurse -Filter *.inf | ForEach-Object {pnputil /add-driver $_.FullName /install}
+```
+
+
+
+*Note: You can adjust the path command based on your extraction location. In this example, the package is extracted directly to the root of the C drive.*
+
+Wait for all drivers to finish installing, then reboot your computer!
+
+---
+
+## 🤝 贡献说明 (Contributions)
+
+If you find any missing drivers or more compatible versions, feel free to submit an Issue or Pull Request (PR)!
+If this driver pack helped you, please give this repository a ⭐ Star to support it!
+
+---
+
+## ⚖️ 免责声明 (Disclaimer)
+
+* This driver package is provided for educational and community sharing purposes only. All driver copyrights belong to their respective original manufacturers.
+* Please backup your important data before installing any drivers. This repository is not responsible for any system issues or data loss caused by driver installation.
+* It is highly recommended to obtain the latest drivers from official channels. This repository only serves as a collection, organization, and backup archive.
+* If any manufacturer considers this repository to be an infringement, please contact me to have it removed.
+
