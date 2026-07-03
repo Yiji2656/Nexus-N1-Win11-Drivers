@@ -6,7 +6,7 @@ Dedicated Windows 11 Driver Pack for Nexus AI Station N1 Devices
 
 ---
 
-## ⚠️ 提示（READ FIRST）
+## ⚠️ READ FIRST
 
 Since the Nexus N1 lacks native network drivers after a clean Windows 11 installation, resulting in no internet access, **please make sure to download this driver pack onto a USB drive** using another internet-connected computer **BEFORE** installing the OS!
 
@@ -14,7 +14,7 @@ Since the Nexus N1 lacks native network drivers after a clean Windows 11 install
 
 ---
 
-## 📋 项目说明 (Project Description)
+## 📋 Project Description
 
 This repository serves as a curated collection of essential hardware drivers required for running Windows 11 on the Nexus AI Station N1. It includes proprietary onboard drivers that are not indexed by standard driver tools (such as Driver Genius, Driver Life, 360 Driver Master), resolving issues where hardware components cannot be recognized after OS installation.
 
@@ -25,9 +25,9 @@ This repository serves as a curated collection of essential hardware drivers req
 
 ---
 
-## 📦 包含驱动列表 (Driver List)
+## 📦 Driver List
 
-### 🔌 核心芯片组驱动 (Chipset) - Must Be Installed First
+### 🔌 Chipset - Must Be Installed First
 
 * AMD ACP Audio Bus Driver
 * AMD I2C/SMBus Driver
@@ -38,7 +38,7 @@ This repository serves as a curated collection of essential hardware drivers req
 * AMD µPEP Power Management Driver
 * AMD SD/eMMC Host Controller Driver
 
-### 🌐 有线/无线网卡驱动 (LAN/WLAN) - Restores Network Access After Installation
+### 🌐 LAN/WLAN - Restores Network Access After Installation
 
 * **Aquantia AQC107 10GbE Driver** (aqnic650) - Onboard 2.5G/10G Ethernet Port
 * AMD USB4 Network Driver
@@ -46,7 +46,7 @@ This repository serves as a curated collection of essential hardware drivers req
 
 > ✅ **Installation Tip**: Once this component is installed, your internet connection will be restored. You can then use Windows Update to automatically download and update the remaining drivers.
 
-### 🎮 核心显卡/显示驱动 (Graphics)
+### 🎮 Graphics
 
 * AMD Radeon Graphics Driver (amdxe)
 * AMD Vulkan Driver (amdvlk)
@@ -55,7 +55,7 @@ This repository serves as a curated collection of essential hardware drivers req
 * NVIDIA Display Output Driver (nv_dispig)
 * NVIDIA Platform Control Framework Driver
 
-### 🔊 板载音频驱动 (Audio)
+### 🔊 Audio
 
 * AMD ACP All-in-One Audio Driver
 * AMD Audio DSP Driver
@@ -63,7 +63,7 @@ This repository serves as a curated collection of essential hardware drivers req
 * NVIDIA HD Audio Driver
 * Voice Clarity Audio Component Driver
 
-### 🔌 USB与Type-C驱动 (USB & Type-C)
+### 🔌 USB & Type-C
 
 * AMD USB4/Thunderbolt Connection Manager Driver
 * AMD USB4 PCIe Filter Driver
@@ -71,7 +71,7 @@ This repository serves as a curated collection of essential hardware drivers req
 * AMD USB Function Driver
 * AMD Wireless Button Driver
 
-### 📝 其他系统驱动 (Other System Drivers)
+### 📝 Other System Drivers
 
 * JMicron JMB585 SATA Controller Driver
 * Realtek USB Card Reader Driver
@@ -82,7 +82,7 @@ This repository serves as a curated collection of essential hardware drivers req
 
 ---
 
-## 🚀 推荐安装顺序 (Recommended Installation Order)
+## 🚀 Recommended Installation Order
 
 To prevent conflicts or errors, please strictly follow the installation order below:
 
@@ -97,9 +97,9 @@ To prevent conflicts or errors, please strictly follow the installation order be
 
 ---
 
-## 💻 安装方法 (Installation Methods)
+## 💻 Installation Methods
 
-### 方法一：手动安装 (Method 1: Manual Installation)
+### Method 1: Manual Installation
 
 1. Extract this driver package to a USB drive or local hard drive.
 2. Right-click the **Start Menu** and select **Device Manager**.
@@ -108,7 +108,7 @@ To prevent conflicts or errors, please strictly follow the installation order be
 5. Select the corresponding driver folder, and click Next to finish the installation.
 6. Install them one by one according to the recommended order above. Select reboot when prompted.
 
-### 方法二：批量自动安装（推荐！）(Method 2: Batch Auto-Installation [Recommended!])
+### Method 2: Batch Auto-Installation [Recommended!]
 
 1. Run **PowerShell** as an Administrator.
 2. Execute the following command to batch install all drivers:
@@ -124,14 +124,14 @@ Wait for all drivers to finish installing, then reboot your computer!
 
 ---
 
-## 🤝 贡献说明 (Contributions)
+## 🤝 Contributions
 
 If you find any missing drivers or more compatible versions, feel free to submit an Issue or Pull Request (PR)!
 If this driver pack helped you, please give this repository a ⭐ Star to support it!
 
 ---
 
-## ⚖️ 免责声明 (Disclaimer)
+## ⚖️ Disclaimer
 
 * This driver package is provided for educational and community sharing purposes only. All driver copyrights belong to their respective original manufacturers.
 * Please backup your important data before installing any drivers. This repository is not responsible for any system issues or data loss caused by driver installation.
@@ -146,7 +146,7 @@ Nexus AI Station N1 设备安装 Windows 11 专用驱动包
 
 ---
 
-## ⚠️ 提示（READ FIRST）
+## ⚠️ 提示
 
 由于 Nexus N1 原生安装 Windows 11 后会缺失网卡驱动导致无法联网，**请务必在装机前**，使用其他可联网的电脑将本驱动包下载到 U 盘中备用！
 
